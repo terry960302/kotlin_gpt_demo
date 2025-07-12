@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: kotlin_project
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: b09e9b5e5c11a18dd10ccd8de2db3a3aa9afd6d1ee83ee6528aa3f509029ca6f
+    expiration: 86400000
+  openai:
+    api:
+      key: ${OPENAI_API_KEY}
+      base-url: https://api.openai.com/v1
+      model: gpt-2.5-turbo
