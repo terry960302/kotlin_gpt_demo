@@ -26,4 +26,4 @@ app:
     api:
       key: ${OPENAI_API_KEY}
       base-url: https://api.openai.com/v1
-      model: gpt-2.5-turbo
+      model: gpt-3.5-turbo

@@ -12,6 +12,7 @@
 우선 도구로서 답변드리자면, 기존에서 개발을 하면서 최적화해나간 아키텍처 구조를 그대로 사용할순 없어서 내부 도메인내용을 제거하고 아키텍처와 컨벤션을 구축하는 정도로만 사용합니다.
 그 이외에 비즈니스로직이나 그런 부분은 도구로서 사용해봤었지만 토큰이 부족해지면 이상하게 작성하는 경우가 있어서 메서드 단위로만 제작합니다.
 
+가장 신경썼던 부분은 요구사항에 있어서 확장성이라는 영역이었습니다. 팀 개발에서 가장 중요한 항목이라 볼 수 있기에 이 구조를 시간제한이라는 부분과 타협해서 프롬프팅을 진행하는데 시간을 할애했습니다.
 그리고 이 작업을 하면서 GPT API 연동에 시간이 없어서 그 부분은 인터페이스로 모킹할수 있는 구조로 제작에 들어갔습니다.
 ```
 
@@ -48,43 +49,6 @@
 - **사용자 활동 기록**: 일일 회원가입, 로그인, 대화 생성 통계
 - **보고서 생성**: CSV 형태의 사용자 대화 보고서
 
-## �� 환경 설정
-
-### 필수 요구사항
-- Java 17
-- PostgreSQL
-- OpenAI API 키
-
-### 환경 변수 설정
-```bash
-export OPENAI_API_KEY="your-openai-api-key"
-```
-
-### 데이터베이스 설정
-```yaml
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: postgres
-```
-
-## 🏃‍♂️ 실행 방법
-
-### 1. 프로젝트 빌드
-```bash
-./gradlew build
-```
-
-### 2. 애플리케이션 실행
-```bash
-./gradlew bootRun
-```
-
-### 3. 테스트 실행
-```bash
-./gradlew test
-```
 
 ## 📡 API 엔드포인트
 
@@ -112,7 +76,7 @@ spring:
 - **Domain Layer**: 핵심 비즈니스 모델 및 규칙
 - **Infrastructure Layer**: 외부 시스템 연동 (DB, OpenAI API)
 
-## �� 데이터베이스 스키마
+## 데이터베이스 스키마
 
 ### 주요 엔티티
 - **User**: 사용자 정보 (이메일, 패스워드, 이름, 역할)
@@ -120,14 +84,8 @@ spring:
 - **Chat**: 개별 대화 (질문, 답변)
 - **Feedback**: 피드백 정보
 
-## �� 테스트
 
-프로젝트는 JUnit 5를 사용한 테스트를 지원합니다:
-- 단위 테스트
-- 통합 테스트
-- API 테스트
-
-## �� 개발 가이드
+## 개발 가이드
 
 ### 코드 컨벤션
 - Kotlin 코딩 컨벤션 준수
@@ -140,19 +98,3 @@ spring:
 3. Application 서비스 구현
 4. Infrastructure 어댑터 구현
 5. Presentation 컨트롤러 작성
-
-## �� 기여 방법
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 배포됩니다.
-
-## �� 문의
-
-프로젝트에 대한 문의사항이 있으시면 이슈를 생성해 주세요.
